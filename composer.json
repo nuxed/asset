@@ -1,0 +1,37 @@
+{
+    "name": "nuxed/asset",
+    "type": "library",
+    "description": "Nuxed Asset",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "azjezz",
+            "email": "azjezz@protonmail.com"
+        },
+        {
+            "name": "Nuxed Community",
+            "homepage": "https://github.com/nuxed/asset/graphs/contributors"
+        }
+    ],
+    "require": {
+        "hhvm": "^4.25",
+        "hhvm/hsl": "^4.25",
+        "nuxed/filesystem": "^1.2",
+        "nuxed/json": "^1.0"
+    },
+    "require-dev": {
+        "facebook/fbexpect": "^2.7",
+        "hhvm/hacktest": "^2.0",
+        "hhvm/hhast": "^4.25"
+    },
+    "scripts": {
+        "check": [
+            "@type-check",
+            "@lint",
+            "@test"
+        ],
+        "lint": "hhast-lint -v src/",
+        "test": "hacktest tests/",
+        "type-check": "hh_client src/"
+    }
+}
