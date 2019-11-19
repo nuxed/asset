@@ -6,10 +6,13 @@ use namespace HH\Lib\Str;
  * Basic package that adds a version to asset URLs.
  */
 class Package implements IPackage {
+private Context\IContext $context;
+
   public function __construct(
     private VersionStrategy\IVersionStrategy $versionStrategy,
-    private Context\IContext $context = new Context\NullContext(),
+    ?Context\IContext $context = null
   ) {
+    $this->context = $context ?? new Context\NullContext();
   }
 
   /**
