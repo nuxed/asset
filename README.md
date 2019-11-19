@@ -39,7 +39,7 @@ async function main(): Awaitable<void> {
     'https://asset-s2.example.com/',
   ];
 
-  $package = new Asset\UrlPackage($cdns, $version);
+  $package = new Asset\UrlPackage($cdns, $versionStrategy);
 
   // https://asset-s2.example.com/css/styles.555abc.css
   echo await $package->getUrl('css/styles.css');
