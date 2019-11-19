@@ -21,8 +21,9 @@ class PathPackage extends Package {
   public function __construct(
     string $basePath,
     IVersionStrategy $versionStrategy,
-    IContext $context = new Context\NullContext(),
+    ?IContext $context = null,
   ) {
+    $context ??= new Context\NullContext();
     parent::__construct($versionStrategy, $context);
 
     if ('' === $basePath) {
