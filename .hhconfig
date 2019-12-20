@@ -6,4 +6,3 @@ const_default_func_args = true
 disallow_array_literal = true
 disable_lval_as_an_expression = true
 ignored_paths = [ "vendor/.+/tests/.+", "vendor/.+/bin/.+" ]
-const_default_func_args = true
