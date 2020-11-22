@@ -16,7 +16,7 @@ use namespace HH\Lib\{C, Str};
  *  * For HTTPs requests, it chooses between HTTPs base URLs and relative protocol URLs
  *    or falls back to any base URL if no secure ones are available.
  */
-class UrlPackage extends Package {
+final class UrlPackage extends Package {
   private vec<string> $baseUrls = vec[];
   private ?UrlPackage $sslPackage;
 

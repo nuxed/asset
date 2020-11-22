@@ -5,12 +5,13 @@ use namespace HH\Lib\Str;
 /**
  * Basic package that adds a version to asset URLs.
  */
+<<__Sealed(UrlPackage::class, PathPackage::class)>>
 class Package implements IPackage {
-private Context\IContext $context;
+  private Context\IContext $context;
 
   public function __construct(
     private VersionStrategy\IVersionStrategy $versionStrategy,
-    ?Context\IContext $context = null
+    ?Context\IContext $context = null,
   ) {
     $this->context = $context ?? new Context\NullContext();
   }

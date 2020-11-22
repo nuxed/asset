@@ -12,7 +12,7 @@ use type Nuxed\Asset\VersionStrategy\IVersionStrategy;
  * allow a website to be hosted easily under any given path under the Web
  * Server root directory.
  */
-class PathPackage extends Package {
+final class PathPackage extends Package {
   private string $basePath;
 
   /**
