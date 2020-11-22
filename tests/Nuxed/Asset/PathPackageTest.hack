@@ -51,7 +51,7 @@ class PathPackageTest extends HackTest {
     $package = new Asset\PathPackage(
       $basePath,
       new Asset\VersionStrategy\StaticVersionStrategy('v1', $format),
-      $this->getContext($basePathRequest),
+      $this->getContextProvider($basePathRequest),
     );
     expect(await $package->getUrl($path))->toBeSame($expected);
   }
@@ -80,14 +80,17 @@ class PathPackageTest extends HackTest {
     $package = new Asset\PathPackage(
       '/subdirectory',
       $versionStrategy,
-      $this->getContext('/bar'),
+      $this->getContextProvider('/bar'),
     );
     expect(await $package->getUrl('main.css'))->toBeSame(
       'https://cdn.com/bar/main.css?',
     );
   }
 
-  private function getContext(string $basePath): Asset\Context\IContext {
-    return new Asset\Context\Context($basePath, false);
+  private function getContextProvider(
+    string $base_path,
+    bool $secure = false,
+  ): Asset\Context\IContextProvider {
+    return Asset\Context\ContextProvider::create($base_path, $secure);
   }
 }

@@ -1,7 +1,6 @@
 namespace Nuxed\Asset;
 
 use namespace HH\Lib\Str;
-use type Nuxed\Asset\Context\IContext;
 use type Nuxed\Asset\VersionStrategy\IVersionStrategy;
 
 /**
@@ -21,10 +20,9 @@ final class PathPackage extends Package {
   public function __construct(
     string $basePath,
     IVersionStrategy $versionStrategy,
-    ?IContext $context = null,
+    ?Context\IContextProvider $contextProvider = null,
   ) {
-    $context ??= new Context\NullContext();
-    parent::__construct($versionStrategy, $context);
+    parent::__construct($versionStrategy, $contextProvider);
 
     if ('' === $basePath) {
       $this->basePath = '/';

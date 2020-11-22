@@ -26,10 +26,9 @@ final class UrlPackage extends Package {
   public function __construct(
     Container<string> $baseUrls,
     VersionStrategy\IVersionStrategy $versionStrategy,
-    ?Context\IContext $context = null,
+    ?Context\IContextProvider $contextProvider = null,
   ) {
-    $context ??= new Context\NullContext();
-    parent::__construct($versionStrategy, $context);
+    parent::__construct($versionStrategy, $contextProvider);
 
     if (C\is_empty($baseUrls)) {
       throw new Exception\LogicException(

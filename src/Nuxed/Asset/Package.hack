@@ -7,13 +7,19 @@ use namespace HH\Lib\Str;
  */
 <<__Sealed(UrlPackage::class, PathPackage::class)>>
 class Package implements IPackage {
-  private Context\IContext $context;
+  private (function(): Context\IContext) $contextProvider;
 
   public function __construct(
     private VersionStrategy\IVersionStrategy $versionStrategy,
-    ?Context\IContext $context = null,
+    ?Context\IContextProvider $contextProvider = null,
   ) {
-    $this->context = $context ?? new Context\NullContext();
+    $this->contextProvider = (): Context\IContext ==> {
+      if ($contextProvider is nonnull) {
+        return $contextProvider->getContext();
+      }
+
+      return new Context\NullContext();
+    };
   }
 
   /**
@@ -35,7 +41,7 @@ class Package implements IPackage {
   }
 
   protected function getContext(): Context\IContext {
-    return $this->context;
+    return ($this->contextProvider)();
   }
 
   protected function getVersionStrategy(): VersionStrategy\IVersionStrategy {

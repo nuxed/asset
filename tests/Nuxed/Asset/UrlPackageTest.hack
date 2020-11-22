@@ -148,7 +148,7 @@ class UrlPackageTest extends HackTest {
     $package = new Asset\UrlPackage(
       $baseUrls,
       new Asset\VersionStrategy\StaticVersionStrategy('v1'),
-      $this->getContext($secure),
+      $this->getContextProvider($secure),
     );
     expect(await $package->getUrl($path))->toBeSame($expected);
   }
@@ -250,7 +250,9 @@ class UrlPackageTest extends HackTest {
     ];
   }
 
-  private function getContext(bool $secure): Asset\Context\IContext {
-    return new Asset\Context\Context('', $secure);
+  private function getContextProvider(
+    bool $secure,
+  ): Asset\Context\IContextProvider {
+    return Asset\Context\ContextProvider::create('', $secure);
   }
 }

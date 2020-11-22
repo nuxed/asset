@@ -1,7 +1,14 @@
 namespace Nuxed\Asset\Context;
 
-class Context implements IContext {
-  public function __construct(private string $basePath, private bool $secure) {}
+final class Context implements IContext {
+  private function __construct(
+    private string $basePath,
+    private bool $secure,
+  ) {}
+
+  public static function create(string $base_path, bool $secure): Context {
+    return new Context($base_path, $secure);
+  }
 
   /**
    * {@inheritdoc}
